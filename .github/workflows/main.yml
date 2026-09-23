@@ -4,6 +4,7 @@ if (-not $testResult.TcpTestSucceeded) {
     exit 1
 }
 Write-Host "TCP connectivity successful!"
+
 - name: Maintain Connection
   run: |
     Write-Host "`n=== RDP ACCESS ==="
@@ -12,6 +13,7 @@ Write-Host "TCP connectivity successful!"
     Write-Host "Password: $(echo $env:RDP_CREDS)"
     Write-Host "====================`n"
 
+    # Keep runner active indefinitely (or until manually cancelled)
     while ($true) {
         Write-Host "[$(Get-Date)] RDP Active - Use Ctrl+C in workflow to terminate"
         Start-Sleep -Seconds 300
